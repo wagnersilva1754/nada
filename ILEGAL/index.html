@@ -9,7 +9,7 @@
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background: linear-gradient(to bottom,  rgb(40, 39, 39), black);
+            background: linear-gradient(to bottom,  rgb(100, 100, 100), black);
             color: white;
             display: flex;
             flex-direction: column;
@@ -94,7 +94,7 @@
         }
 
         .highlight-box {
-            background-color: rgba(8, 8, 8, 0.1);
+            background-color: rgba(255, 255, 255, 0.1);
             padding: 10px;
             border-radius: 20px;
             text-align: center;
@@ -130,14 +130,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 1px solid #000000;
+            border: 1px solid #ccc;
             padding: 0px;
             margin-bottom: 20px;
             position: relative; /* Para o overlay */
         }
 
         .news-overlay {
-            background-color: rgba(107, 105, 105, 0.5); /* Fundo preto com 50% de transparência */
+            background-color: rgba(117, 114, 114, 0.5); /* Fundo preto com 50% de transparência */
             border-radius: 10px;
             padding: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
@@ -172,7 +172,7 @@
         .calendar-container {
             width: 700px;
             height: 565px;
-            background-color: rgba(112, 110, 110, 0.1);
+            background-color: rgba(255, 255, 255, 0.1);
             padding: 45px;
             border-radius: 10px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
@@ -294,7 +294,7 @@
                 <div class="news-overlay">
                     <div class="news-content">
                         <h4>🎉RECRUTAMENTO SEMANAL🎉</h4>
-                        <p>É essencial que todas as facções e organizações recrutem o máximo de jogadores possível, pois isso permitirá que sua facção cresça e se desenvolva.</p>
+                        <p>É importante que todas as facções e Org recrutem a maior quantidade player, isso fará que a sua facção cresca e desenvolva.</p>
                         <a href="" class="news-link"></a>
                        
                     </div>
@@ -321,7 +321,7 @@
 
                 const months = [
                     "📆 JANEIRO", "📆 FEVEREIRO", "📆 MARÇO", "📆 ABRIL",
-                    "📆 MAIO", "📆 JUNHO", "📆 JULHO", "📆 AGOSTO","📆 SETEMBRO",
+                    "📆 MAIO", "📆 JUNHO", "📆 JULHO", "📆 AGOSTO",
                     "📆 OUTUBRO", "📆 NOVEMBRO", "📆 DEZEMBRO"
                 ];
                 header.textContent = `${months[month]} ${year}`;
