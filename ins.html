@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscrição</title>
+    <style>
+        body {
+            background-color: #1C1C1C;
+            color: #FFFFFF;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            height: 100vh;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #121212;
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .sidebar img {
+            width: 100px;
+            margin-bottom: 20px;
+        }
+
+        .sidebar button {
+            background-color: #007BFF;
+            color: #FFFFFF;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px 0;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        .sidebar button:hover {
+            background-color: #0056b3;
+        }
+
+        .content {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .questions {
+            background-color: #2F2F2F;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 600px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .questions h3 {
+            margin-top: 0;
+            font-size: 18px;
+        }
+
+        .questions h2 {
+            text-align: center;
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+
+        .question {
+            margin-bottom: 15px;
+        }
+
+        .question label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .question input, .question textarea {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #424242;
+            color: white;
+            font-size: 14px;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .actions button {
+            background-color: #007BFF;
+            color: #FFFFFF;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .actions button:disabled {
+            background-color: #555555;
+            cursor: not-allowed;
+        }
+
+        .actions button:hover:not(:disabled) {
+            background-color: #0056b3;
+        }
+
+        .message {
+            text-align: center;
+            margin-top: 20px;
+            color: #FF4C4C;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="sidebar">
+    <img src="https://i.ibb.co/TkjdDwN/baixados.png" alt="Logo">
+    <button onclick="showQuestions('personal')">Perguntas pessoais</button>
+    <button onclick="showQuestions('staff')">Perguntas Staff</button>
+    <button onclick="showQuestions('illegal')">Perguntas responsável ilegal</button>
+    <button onclick="showQuestions('rules')">Perguntas sobre regras</button>
+</div>
+
+<div class="content">
+    <div class="questions" id="questionsContainer">
+        <h2>Formulário Responsável Ilegal</h2>
+        <h3>Perguntas</h3>
+        <div id="questionList"></div>
+        <div class="actions">
+            <button id="sendButton" disabled onclick="sendReport()">Enviar Teste</button>
+            <button onclick="cancelTest()">Desistir do Teste</button>
+        </div>
+        <div class="message" id="warningMessage">Você precisa preencher todas as perguntas para poder encerrar o teste</div>
+    </div>
+</div>
+
+<script>
+    const questions = {
+        personal: [
+            "Seu nome e id?",
+            "Qual é a sua idade real?",
+            "Porque deseja ser responsável ilegal?",
+            "Na sua opnião oque é ser um Responsável ilegal?",
+            "Quais as atribuições de um Responsável ilegal"
+            
+            
+        ],
+        staff: [
+            "Você cumpriu as suas últimas 2 metas staff? Se não justifique o motivo.",
+            "Há quanto tempo está na equipe?",
+            "Qual é o seu cargo atual na staff?",
+            "Você é responsável por alguma outra área dentre os cargos da staff?",
+            "Quais são suas responsabilidades principais? Ao ingressar na equipe não irá atrapalhar as suas metas?"
+        ],
+        illegal: [
+            "Qual seu tempo disponível para a staff e qual seria o tempo disponível para o Responsável ilegal? ",
+            "VOCÊ CONSEGUIRÁ CONCILIAR AS METAS STAFF COM A RESPONSABILIDADE DO ILEGAL?",
+            "Você está ciente das regras?"
+        ],
+        rules: [
+            "UM LÍDER BANIDO POR RDM É MOTIVO PARA A FACÇÃO RECEBER UMA ADV DE FAC??",
+            "QUAL A MÉDIA DE MEMBROS ONLINE QUE UMA FACÇÃO DEVE TER PARA SE MANTER NA CIDADE?",
+            "QUANTAS ADV É NECESSÁRIO PARA UMA FACÇÃO SER RECOLHIDA PELA EQUIPE DE RESPONSÁVEL ILEGAL?",
+            "QUANTAS AÇÕES ERRADAS É POSSIVEL APLICAR UMA ADV DE FACÇÃO? ",
+            " UM PLAYER SUBIU NA CALL SUPORTE PARA INFORMAR QUE DURANTE A GUERRA FOI MORTO POR OUTRO PLAYER QUE NÃO ESTÁ ENVOLVIDO DIRETAMENTE, OU SEJA, NÃO FAZ PARTE DE NENHUMA FACÇÃO ENVOLVIDA, VOCÊ COMO RESP.ILEGAL OQUE FARIA?",
+            " SEGUINDO A LÓGICA DAS GUERRAS , NA SUA OPNIÃO PODERÁ HAVER RDM EM QUALQUER LUGAR DURANTE O EVENTO?", 
+            " O RESP.ILEGAL ESTAVA 'TELANDO' A DOMINAÇÃO DE MUNIÇÃO, E AVISTOU UM PLAYER TROCANDO TIRO QUANDO A BARREIRA ESTÁ AZUL E IMEDIATAMENTE QUANDO A BARREIRA FICOU VERMELHA ELE PAROU DE ATIRAR PARA NÃO SER PUNIDO POR RDM, O PLAYER ESTÁ CORRETO? ",
+            "A REGRA DE DOMINAÇÃO DIZ , 'É EXTRITAMENTE PROIBIDO ENVIAR ITENS PARA OUTRO PLAYER QUANDO A BARREIRA ESTIVER AZUL' , VOCÊ CONCORDA COM A REGRA?  JUSTIFIQUE SUA RESPOSTA. ",
+            "OQUE PODE OCASIONAR UMA ADVERTÊNCIA DE FACÇÃO?",
+            "AO INTERFERIR NA GUERRA UTILIZANDO A MOCHILA DE UMA DAS FACÇÕES COM O INTUITO DE TROCAR TIRO QUAL PUNIÇÃO DEVERÁ SER APLICADA ?",
+            "QUANTAS DOMINAÇÕES UMA FACÇÃO PODERÁ DOMINAR DE FORMA SIMULTANIA?"
+          
+
+
+
+
+
+
+        ]
+    };
+
+    const answers = JSON.parse(localStorage.getItem('answers')) || {};
+
+    function showQuestions(category) {
+        const container = document.getElementById('questionList');
+        container.innerHTML = '';
+        questions[category].forEach((q, index) => {
+            const questionDiv = document.createElement('div');
+            questionDiv.className = 'question';
+            const label = document.createElement('label');
+            label.textContent = q;
+            const input = document.createElement('textarea');
+            input.setAttribute('data-category', category);
+            input.setAttribute('data-index', index);
+            input.value = answers[`${category}-${index}`] || '';
+            input.oninput = (e) => {
+                answers[`${category}-${index}`] = e.target.value;
+                localStorage.setItem('answers', JSON.stringify(answers));
+                validateAnswers();
+            };
+            questionDiv.appendChild(label);
+            questionDiv.appendChild(input);
+            container.appendChild(questionDiv);
+        });
+    }
+
+    function validateAnswers() {
+        const allAnswered = Object.keys(questions).every(category =>
+            questions[category].every((_, index) => answers[`${category}-${index}`] && answers[`${category}-${index}`].trim() !== '')
+        );
+        document.getElementById('sendButton').disabled = !allAnswered;
+        document.getElementById('warningMessage').style.display = allAnswered ? 'none' : 'block';
+    }
+
+    function sendReport() {
+        fetch('https://discordapp.com/api/webhooks/1324820867309371423/w1BFw_LoSF8ProBVwRWgmxZRilvDD_a3LY_rocOVdqyV1ZHmaovrx52g5RwKd0-Sd-g6', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ content: JSON.stringify(answers, null, 2) })
+        }).then(() => {
+            alert('Teste enviado com sucesso!');
+        }).catch(err => {
+            alert('Erro ao enviar o teste: ' + err);
+        });
+    }
+
+    function cancelTest() {
+        window.location.href = 'index.html';
+    }
+
+    validateAnswers();
+</script>
+
+</body>
+</html>
