@@ -152,46 +152,38 @@
 
 <script>
     const questions = {
-          personal: [
-            "Seu nome e id?",
-            "Qual é a sua idade real?",
-            "Porque deseja ser responsável ilegal?",
-            "Na sua opnião oque é ser um Responsável ilegal?",
-            "Quais as atribuições de um Responsável ilegal"
-            
-            
-        ],
-        staff: [
-            "Você cumpriu as suas últimas 2 metas staff? Se não justifique o motivo.",
-            "Há quanto tempo está na equipe?",
-            "Qual é o seu cargo atual na staff?",
-            "Qual seu tempo disponível para a staff e qual seria o tempo disponível para o Responsável ilegal? ",
-            "VOCÊ CONSEGUIRÁ CONCILIAR AS METAS STAFF COM A RESPONSABILIDADE DO ILEGAL?",
-            "Você está ciente das regras?"
-        ],
-        illegal: [
-           " O RESP.ILEGAL ESTAVA 'TELANDO' A DOMINAÇÃO DE MUNIÇÃO, E AVISTOU UM PLAYER TROCANDO TIRO QUANDO A BARREIRA ESTÁ AZUL E IMEDIATAMENTE QUANDO A BARREIRA FICOU VERMELHA ELE PAROU DE ATIRAR PARA NÃO SER PUNIDO POR RDM, O PLAYER ESTÁ CORRETO? ",
-            "A REGRA DE DOMINAÇÃO DIZ , 'É EXTRITAMENTE PROIBIDO ENVIAR ITENS PARA OUTRO PLAYER QUANDO A BARREIRA ESTIVER AZUL' , VOCÊ CONCORDA COM A REGRA?  JUSTIFIQUE SUA RESPOSTA. ",
-            "OQUE PODE OCASIONAR UMA ADVERTÊNCIA DE FACÇÃO?",
-            "AO INTERFERIR NA GUERRA UTILIZANDO A MOCHILA DE UMA DAS FACÇÕES COM O INTUITO DE TROCAR TIRO QUAL PUNIÇÃO DEVERÁ SER APLICADA ?",
-            "QUANTAS DOMINAÇÕES UMA FACÇÃO PODERÁ DOMINAR DE FORMA SIMULTANIA?"
-        ],
-        rules: [
-            "UM LÍDER BANIDO POR RDM É MOTIVO PARA A FACÇÃO RECEBER UMA ADV DE FAC??",
-            "QUAL A MÉDIA DE MEMBROS ONLINE QUE UMA FACÇÃO DEVE TER PARA SE MANTER NA CIDADE?",
-            "QUANTAS ADV É NECESSÁRIO PARA UMA FACÇÃO SER RECOLHIDA PELA EQUIPE DE RESPONSÁVEL ILEGAL?",
-            "QUANTAS AÇÕES ERRADAS É POSSIVEL APLICAR UMA ADV DE FACÇÃO? ",
-            " UM PLAYER SUBIU NA CALL SUPORTE PARA INFORMAR QUE DURANTE A GUERRA FOI MORTO POR OUTRO PLAYER QUE NÃO ESTÁ ENVOLVIDO DIRETAMENTE, OU SEJA, NÃO FAZ PARTE DE NENHUMA FACÇÃO ENVOLVIDA, VOCÊ COMO RESP.ILEGAL OQUE FARIA?",
-            " SEGUINDO A LÓGICA DAS GUERRAS , NA SUA OPNIÃO PODERÁ HAVER RDM EM QUALQUER LUGAR DURANTE O EVENTO?", 
-        
-          
-
-
-
-
-
-
-        ]
+         personal: [
+        "Seu nome e ID?",
+        "Qual é a sua idade real?",
+        "Por que deseja ser responsável ilegal?",
+        "Na sua opinião, o que é ser um responsável ilegal?",
+        "Quais são as atribuições de um responsável ilegal?"
+    ],
+    staff: [
+        "Você cumpriu as suas últimas 2 metas na staff? Se não, justifique o motivo.",
+        "Há quanto tempo está na equipe?",
+        "Qual é o seu cargo atual na staff?",
+        "Você é responsável por alguma outra área além dos cargos da staff?",
+        "Quais são suas responsabilidades principais? Ao ingressar na equipe, isso poderá atrapalhar suas metas?"
+    ],
+    illegal: [
+        "Qual é o seu tempo disponível para a staff e qual seria o tempo disponível para o responsável ilegal?",
+        "Você conseguirá conciliar as metas da staff com a responsabilidade do ilegal?",
+        "Você está ciente das regras?"
+    ],
+    rules: [
+        "Um líder banido por RDM é motivo para a facção receber uma advertência de facção?",
+        "Qual é a média de membros online que uma facção deve ter para se manter na cidade?",
+        "Quantas advertências são necessárias para uma facção ser recolhida pela equipe de responsável ilegal?",
+        "Quantas ações erradas podem resultar em uma advertência de facção?",
+        "Um player subiu na call suporte para informar que, durante a guerra, foi morto por outro player que não está envolvido diretamente, ou seja, não faz parte de nenhuma facção envolvida. Você, como responsável ilegal, o que faria?",
+        "Seguindo a lógica das guerras, na sua opinião, poderá haver RDM em qualquer lugar durante o evento?",
+        "O responsável ilegal estava 'telando' a dominação de munição e avistou um player trocando tiros quando a barreira estava azul. Imediatamente, quando a barreira ficou vermelha, ele parou de atirar para não ser punido por RDM. O player está correto?",
+        "A regra de dominação diz: 'É estritamente proibido enviar itens para outro player quando a barreira estiver azul.' Você concorda com a regra? Justifique sua resposta.",
+        "O que pode ocasionar uma advertência de facção?",
+        "Ao interferir na guerra utilizando a mochila de uma das facções com o intuito de trocar tiros, qual punição deverá ser aplicada?",
+        "Quantas dominações uma facção poderá realizar de forma simultânea?"
+    ]
     };
 
     const answers = JSON.parse(localStorage.getItem('answers')) || {};
